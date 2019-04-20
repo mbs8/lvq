@@ -9,6 +9,8 @@ class Instance:
         self.classification = classification
         self.distancesToInstances = []
 
+    # Calcula a distancia para determinada instancia usando os vetores de min e max 
+    # para a normalização do cálculo da distância
     def euclideanDistance(self, datasetInstance, minArg, maxArg):
         distance = 0
         for i, param in enumerate(datasetInstance.params):
@@ -16,6 +18,7 @@ class Instance:
         distance = math.sqrt(distance)       
         return distance
     
+    # Insere ordenadamente no array de distancias a distancia para determinada instancia
     def insertDistance(self, distanceToInstance, instance, k): 
         distInst = (distanceToInstance, instance)
         if self.distancesToInstances == []:
@@ -32,7 +35,7 @@ class Instance:
                 self.distancesToInstances.append(distInst)
                 
     
-    # testa se a instancia foi classificada corretamente
+    # Retorna a classe pertencente da instancia
     def classify(self, numNeighbor, classes):
         dictClass = {}
 
@@ -44,8 +47,6 @@ class Instance:
             dictClass[classification] += 1
 
         return max(dictClass.items(), key=operator.itemgetter(1))[0]
-        
-
 
 # atualiza o array de minimo e maximo de cada um dos parametros
 def updateMinMax(row, minArg, maxArg):
@@ -85,15 +86,9 @@ def readCsv(file):
     
     return (classes, tests, minArg, maxArg)
                 
-
-def knn(dataSet, instance, k): 
-    classes = []                    # array contendo as classes possiveis
-    tests  = []                     # array contendo todas as instancias no banco de dados
-    maxArg = []                     # array contendo o maximo de cada parametro
-    minArg = []                     # array contendo o minimo de cada parametro
+# Retorna a classificação de uma instancia dado um nome de dataset e um k (número de vizinhos)
+def knn(classes, tests, minArg, maxArg, instance, k): 
     
-    classes, tests, minArg, maxArg = readCsv(dataSet)
-
     for inst in tests:
         distanceToInstance = instance.euclideanDistance(inst, minArg, maxArg)
         instance.insertDistance(distanceToInstance, inst, k)

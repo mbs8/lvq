@@ -1,5 +1,7 @@
+from knn.knn import readCsv
+
 def crossFold(dataSet, k, foldSize):
-    params = []                     # array contendo o nome das colunas dos parametros
+    classes = []                     # array contendo o nome das colunas dos parametros
     tests  = []                     # array contendo todas as instancias no banco de dados
     maxArg = []                     # array contendo o maximo de cada parametro
     minArg = []                     # array contendo o minimo de cada parametro
@@ -7,7 +9,7 @@ def crossFold(dataSet, k, foldSize):
     accuracy = 0
     div = 1                             
 
-    params, tests, minArg, maxArg = readCsv(dataSet)
+    classes, tests, minArg, maxArg = readCsv(dataSet)
 
     while ((div * foldSize) < len(tests)):
         testingSet  = tests[(div-1)*foldSize : div*foldSize]
@@ -17,11 +19,11 @@ def crossFold(dataSet, k, foldSize):
         # calcula todas as distancias para i-esima instancia do conjunto de teste e classifica de acordo com os k vizinhos mais proximos
         for testInstance in testingSet:
             for trainInstance in trainingSet:
-                testInstance.insertDistance((testInstance.euclideanDistance(trainInstance, minArg, maxArg)), trainInstance)
+                testInstance.insertDistance((testInstance.euclideanDistance(trainInstance, minArg, maxArg)), trainInstance, k)
                 if (testInstance.distancesToInstances[0] == 0):
                     hit += 1
                     break
-            if testInstance.classify(k):
+            if testInstance.classify(k,classes) == testInstance.classification:
                 hit += 1
         
         accuracy += (hit/len(testingSet))
