@@ -1,2 +1,2 @@
 # lvq
-Projeto que implemento o algoritmo LVQ 
+Implementa o algoritmo LVQ 
