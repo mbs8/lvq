@@ -1,6 +1,6 @@
 import csv
 import math
-import time
+import operator
 
 class Instance:
     def __init__(self, id, params, classification):
@@ -16,7 +16,7 @@ class Instance:
         distance = math.sqrt(distance)       
         return distance
     
-    def insertDistance(self, distanceToInstance, instance): 
+    def insertDistance(self, distanceToInstance, instance, k): 
         distInst = (distanceToInstance, instance)
         if self.distancesToInstances == []:
             self.distancesToInstances.append(distInst)
@@ -24,25 +24,28 @@ class Instance:
             for i, (dist, _) in enumerate(self.distancesToInstances):
                 if dist > distanceToInstance:
                     self.distancesToInstances.insert(i, distInst)
+                    size = len(self.distancesToInstances)
+                    if size > k:
+                        del(self.distancesToInstances[size-1])
                     return
-            self.distancesToInstances.append(distInst)
+            if len(self.distancesToInstances) < k:
+                self.distancesToInstances.append(distInst)
+                
     
     # testa se a instancia foi classificada corretamente
-    def classify(self, numNeighbor):
-        classTrue = 0 
-        classFalse = 0
+    def classify(self, numNeighbor, classes):
+        dictClass = {}
+
+        for clas in classes:
+            dictClass[clas] = 0
 
         for i in range(0, numNeighbor):
-            if self.distancesToInstances[i][1].classification == 'true' or self.distancesToInstances[i][1].classification == 'yes':
-                classTrue  += 1
-            else:
-                classFalse += 1
+            classification = self.distancesToInstances[i][1].classification
+            dictClass[classification] += 1
 
-        if ((classTrue < classFalse) and (self.classification == 'false' or self.classification == 'no')):
-            return True
-        if ((classTrue > classFalse) and (self.classification == 'true' or self.classification == 'yes')):
-            return True
-        return False
+        return max(dictClass.items(), key=operator.itemgetter(1))[0]
+        
+
 
 # atualiza o array de minimo e maximo de cada um dos parametros
 def updateMinMax(row, minArg, maxArg):
@@ -61,7 +64,7 @@ def updateMinMax(row, minArg, maxArg):
 
 # ler do arquivo csv e salva as informacoes nos arrays
 def readCsv(file): 
-    params = []
+    classes = []
     tests = []
     maxArg = []
     minArg = []
@@ -70,39 +73,35 @@ def readCsv(file):
         csvReader = csv.reader(csvFile, delimiter=',')
         line_count = 0
         for row in csvReader:
-            if (line_count == 0):
-                params = row
-            elif (row != []):
+            if (row != [] and line_count != 0):
                 param = [float(i) for i in row[:len(row)-1]]     
                 classification = row[len(row)-1]
                 test = Instance(line_count-1, param, classification)
                 tests.append(test)
-                minArg, maxArg = updateMinMax(row[:len(row)-1], minArg, maxArg) 
+                minArg, maxArg = updateMinMax(row[:len(row)-1], minArg, maxArg)
+                if not(classification in classes):
+                    classes.append(classification)
             line_count += 1
     
-    return (params, tests, minArg, maxArg)
+    return (classes, tests, minArg, maxArg)
                 
 
-def knn(): 
-    params = []                     # array contendo o nome das colunas dos parametros
+def knn(dataSet, k): 
+    classes = []                    # array contendo as classes possiveis
     tests  = []                     # array contendo todas as instancias no banco de dados
     maxArg = []                     # array contendo o maximo de cada parametro
     minArg = []                     # array contendo o minimo de cada parametro
-    hit    = 0                      # numero de acertos em cada teste de crossfold
-    accuracy = 0
-    div = 1
-    dataSets = ["../Datasets/CM1_software_defect_prediction.csv", "../Datasets/KC2_software_defect_prediction.csv"]                             
-
-    for dataSet in enumerate(dataSets):
-        params, tests, minArg, maxArg = readCsv(dataSet)
-
-        print(params)
-        #print(tests)
-        print(minArg)
-        print(maxArg)
     
+    classes, tests, minArg, maxArg = readCsv(dataSet)
 
-knn()
+    for inst in tests:
+        distanceToInstance = instance.euclideanDistance(inst, minArg, maxArg)
+        instance.insertDistance(distanceToInstance, inst, k)
+        
+    return instance.classify(k, classes)
+
+    
+print(knn("../Datasets/KC2_software_defect_prediction.csv", 3))
 
 
 
