@@ -100,8 +100,6 @@ def knn(dataSet, instance, k):
         
     return instance.classify(k, classes)
 
-    
-print(knn("../Datasets/KC2_software_defect_prediction.csv", 3))
 
 
 
