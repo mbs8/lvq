@@ -86,7 +86,7 @@ def readCsv(file):
     return (classes, tests, minArg, maxArg)
                 
 
-def knn(dataSet, k): 
+def knn(dataSet, instance, k): 
     classes = []                    # array contendo as classes possiveis
     tests  = []                     # array contendo todas as instancias no banco de dados
     maxArg = []                     # array contendo o maximo de cada parametro
