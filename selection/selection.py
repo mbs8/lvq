@@ -1,5 +1,6 @@
 from crossfold.knn.knn import readCsv
 
+# Algoritmo para selecionar os protótipos
 def selection(dataSet, prototypesPerClass):
     classes = []                # Array contendo as classes das instancias
     tests = []                  # Array contendo todas as instancias 
@@ -12,6 +13,8 @@ def selection(dataSet, prototypesPerClass):
     for i, clas in enumerate(classes):
         j = 0
         while len(subTest[i]) < prototypesPerClass:
+            if j >= len(tests)-1:
+                break 
             if tests[j].classification == clas:
                 subTest[i].append(tests[j])
             j += 1
