@@ -1,4 +1,4 @@
-from readCsv import readCsv
+from readCsv import *
 
 # Algoritmo para selecionar os protótipos
 def selection(dataSet, prototypesPerClass):
@@ -6,21 +6,23 @@ def selection(dataSet, prototypesPerClass):
     tests = []                  # Array contendo todas as instancias 
     minArg = []                 # Array contendo o valor minimo de cada parâmetro 
     maxArg = []                 # Array contendo o máximo de cada parâmetro
-    subTest = [[]]              # Array contendo o subconjunto que será retornado pelo selection
+    subTest = []                # Array contendo o subconjunto que será retornado pelo selection
 
-    classes, tests, minArg, maxArg = readCsv(dataSet)
+    classes, tests, _, _ = readCsv(dataSet)
 
-    for i, clas in enumerate(classes):
+    for clas in classes:
         j = 0
-        subTest[1] = []
-        print(subTest)
-        while len(subTest[i]) < prototypesPerClass:
+        prototypes = []
+        while len(prototypes) < prototypesPerClass:
             if j >= len(tests)-1:
                 break 
             if tests[j].classification == clas:
-                subTest[i].append(tests[j])
+                prototypes.append(tests[j])
             j += 1
+        subTest.append(prototypes)
+    
+    for listTest in subTest:
+        for test in listTest:
+            minArg, maxArg = updateMinMax(test.params, minArg, maxArg)
         
     return classes, subTest, minArg, maxArg
-
-selection("../Datasets/CM1_software_defect_prediction.csv", 5)

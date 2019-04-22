@@ -38,6 +38,3 @@ def readCsv(file):
             line_count += 1
     
     return (classes, tests, minArg, maxArg)
-
-
-classes, tests, minArg, maxArg = readCsv("../Datasets/CM1_software_defect_prediction.csv")
