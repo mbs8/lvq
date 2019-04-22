@@ -1,7 +1,7 @@
 import csv
 import math
 import operator
-from classes.Instance import Instance
+from Instance import Instance
               
 # Retorna a classificação de uma instancia dado um nome de dataset e um k (número de vizinhos)
 def knn(classes, tests, minArg, maxArg, instance, k): 

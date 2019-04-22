@@ -1,15 +1,20 @@
-from selection.selection import selection
+from selection import selection
 
-def lvq1():
+def lvq1(dataset):
     classes = []
-    tests = []
+    prototypes = []
     minArg = []
     maxArg = []
     prototypesPerClass = 10
 
-    for dataset in dataSets:
-        classes, tests, minArg, maxArg = selection(dataset, prototypesPerClass)
-        print(tests)
+    classes, prototypes, minArg, maxArg = selection(dataset, prototypesPerClass)
+    
+
 
 def main():
-	
+	datasets = ["Datasets/CM1_software_defect_prediction.csv", "Datasets/KC2_software_defect_prediction.csv"]
+
+	for dataset in datasets:
+		lvq1(dataset)
+
+main()

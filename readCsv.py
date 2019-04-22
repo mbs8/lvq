@@ -1,5 +1,5 @@
 import csv 
-from classes.Instance import Instance
+from Instance import Instance
 
 # atualiza o array de minimo e maximo de cada um dos parametros
 def updateMinMax(row, minArg, maxArg):
