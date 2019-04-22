@@ -7,10 +7,11 @@ from Instance import Instance
 def knn(classes, tests, minArg, maxArg, instance, k): 
     
     for inst in tests:
-        distanceToInstance = instance.euclideanDistance(inst, minArg, maxArg)
-        instance.insertDistance(distanceToInstance, inst, k)
-        
-    return instance.classify(k, classes)
+        if inst.id != instance.id:
+            distanceToInstance = instance.euclideanDistance(inst, minArg, maxArg)
+            instance.insertDistance(distanceToInstance, inst, k)
+
+    return instance.classify(k, classes), instance.distancesToInstances[0:k]
 
 
 

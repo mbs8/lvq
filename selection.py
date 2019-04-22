@@ -25,4 +25,4 @@ def selection(dataSet, prototypesPerClass):
         for test in listTest:
             minArg, maxArg = updateMinMax(test.params, minArg, maxArg)
         
-    return classes, subTest, minArg, maxArg
+    return classes, subTest, tests, minArg, maxArg
