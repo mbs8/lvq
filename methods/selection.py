@@ -1,4 +1,4 @@
-from crossfold.knn.knn import readCsv
+from readCsv import readCsv
 
 # Algoritmo para selecionar os protótipos
 def selection(dataSet, prototypesPerClass):
@@ -12,6 +12,8 @@ def selection(dataSet, prototypesPerClass):
 
     for i, clas in enumerate(classes):
         j = 0
+        subTest[1] = []
+        print(subTest)
         while len(subTest[i]) < prototypesPerClass:
             if j >= len(tests)-1:
                 break 
@@ -20,3 +22,5 @@ def selection(dataSet, prototypesPerClass):
             j += 1
         
     return classes, subTest, minArg, maxArg
+
+selection("../Datasets/CM1_software_defect_prediction.csv", 5)
