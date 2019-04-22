@@ -37,7 +37,7 @@ def main():
 	prototypesPerClass = 10
 
 	for dataset in datasets:
-		tests = lvq1(dataset, prototypesPerClass, k)
+		lvq1(dataset, prototypesPerClass, k)
 	
 
 main()
