@@ -1,0 +1,82 @@
+
+Dataset: Datasets/CM1_software_defect_prediction.csv
+
+K = 1
+
+Knn Original
+Accuracy: 84.49%
+Tempo gasto: 0.009758949279785156
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 10
+Accuracy: 45.00%
+Tempo gasto: 8.565160036087036
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 20
+Accuracy: 57.50%
+Tempo gasto: 16.828484058380127
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 30
+Accuracy: 61.67%
+Tempo gasto: 25.546823263168335
+
+K = 3
+
+Knn Original
+Accuracy: 87.96%
+Tempo gasto: 0.009366989135742188
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 10
+Accuracy: 45.00%
+Tempo gasto: 8.64514684677124
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 20
+Accuracy: 37.50%
+Tempo gasto: 17.423988819122314
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 30
+Accuracy: 40.00%
+Tempo gasto: 26.06979990005493
+
+
+----------------------------------------------------------------------------------------------------------
+
+Dataset: Datasets/KC2_software_defect_prediction.csv
+
+K = 1
+
+Knn Original
+Accuracy: 78.27%
+Tempo gasto: 0.015540122985839844
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 10
+Accuracy: 45.00%
+Tempo gasto: 9.455827951431274
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 20
+Accuracy: 57.50%
+Tempo gasto: 18.990422010421753
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 30
+Accuracy: 61.67%
+Tempo gasto: 28.538079977035522
+
+K = 3
+
+Knn Original
+Accuracy: 79.23%
+Tempo gasto: 0.009428024291992188
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 10
+Accuracy: 45.00%
+Tempo gasto: 9.70432996749878
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 20
+Accuracy: 67.50%
+Tempo gasto: 19.646772146224976
+
+LVQ1 - LearningRate = 5; Prototypes per Class = 30
+Accuracy: 71.67%
+Tempo gasto: 29.59843683242798
+
+
+----------------------------------------------------------------------------------------------------------

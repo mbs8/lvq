@@ -1,6 +1,9 @@
 from selection import selection
 from knn import knn
+from crossfold import crossFold
+from readCsv import readCsv
 import time
+
 
 def lvq1(dataset, prototypesPerClass, learningRate, k):
 	classes = []
@@ -35,19 +38,39 @@ def lvq1(dataset, prototypesPerClass, learningRate, k):
 		i = 0
 		actualIndex += 1
 
-	return prototypes
+	return prototypes, classes, minArg, maxArg
 
 			
 
 def main():
-	# datasets = ["Datasets/CM1_software_defect_prediction.csv", "Datasets/KC2_software_defect_prediction.csv"]
-	datasets = ["Datasets/CM1_software_defect_prediction.csv"]
-	k = 1											# K para o algoritmo do knn
-	prototypesPerClass = 10							# Número de protótipos por classe
-	learningRate = 10								# Velocidade da taxa de aprendizagem do algoritmo
+	datasets = ["Datasets/CM1_software_defect_prediction.csv", "Datasets/KC2_software_defect_prediction.csv"]
+	kValues = [1,3]											# K para o algoritmo do knn
+	prototypesPerClass = [10, 20, 30]						# Número de protótipos por classe
+	learningRate = 5										# Velocidade da taxa de aprendizagem do algoritmo
+	foldSize = 10											# Tamanho das subdivisoes do crossFold
 
+	startTime = 0
+	currentTime = 0
 	for dataset in datasets:
-		lvq1(dataset, prototypesPerClass, learningRate, k)
+		print("\nDataset: " + str(dataset) + "\n")
+		for k in kValues:
+			print("K = " + str(k) + "\n")
+			startTime = time.time()
+			classesOrigin, tests, minArgOrigin, maxArgOrigin = readCsv(dataset)
+			currentTime = time.time() - startTime
+			print("Knn Original")
+			print(str(crossFold(classesOrigin, tests, minArgOrigin, maxArgOrigin, k, foldSize)))
+			print("Tempo gasto: " + str(currentTime) + "\n")
+			
+			for prot in prototypesPerClass:
+				startTime = time.time()
+				prototypes, classes, minArg, maxArg = lvq1(dataset, prot, learningRate, k)
+				currentTime = time.time() - startTime
+				print("LVQ1 - LearningRate = " + str(learningRate) + "; Prototypes per Class = " + str(prot))
+				print(crossFold(classes, prototypes, minArg, maxArg, k, foldSize))
+				print("Tempo gasto: " + str(currentTime) + "\n")
+		print("\n----------------------------------------------------------------------------------------------------------")
+			
 	
 
 main()

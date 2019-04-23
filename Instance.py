@@ -2,7 +2,7 @@ import math
 import operator
 
 def alpha(actualIndex, totalIndex):
-    return (1 - ((actualIndex)/ totalIndex))
+    return 0.5 * (1 - ((actualIndex)/ totalIndex))
 
 class Instance:
     def __init__(self, id, params, classification):
