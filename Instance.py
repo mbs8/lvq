@@ -1,9 +1,8 @@
 import math
 import operator
 
-def alpha(indAtual, totalInd):
-	    a = 0.5
-	    return a * (1 - ((indAtual)/ totalInd))
+def alpha(actualIndex, totalIndex):
+    return (1 - ((actualIndex)/ totalIndex))
 
 class Instance:
     def __init__(self, id, params, classification):
@@ -52,8 +51,10 @@ class Instance:
         return max(dictClass.items(), key=operator.itemgetter(1))[0]
 
     def adjustParam(self, neighbor, aprox, indAtual, totalInd):
-        for i, _ in enumerate(self.params):
+        i = 0
+        while i < len(self.params):
             if aprox:
-                self.params[i] += alpha(indAtual, totalInd) * (neighbor[1].params[i] - self.params[i])
+                self.params[i] += alpha(indAtual, totalInd) * (neighbor.params[i] - self.params[i])
             else:
-                self.params[i] -= alpha(indAtual, totalInd) * (neighbor[1].params[i] - self.params[i])
+                self.params[i] -= alpha(indAtual, totalInd) * (neighbor.params[i] - self.params[i])
+            i += 1
