@@ -13,8 +13,8 @@ def crossFold(classes, tests, minArg, maxArg, k, foldSize):
 
         # calcula todas as distancias para i-esima instancia do conjunto de teste e classifica de acordo com os k vizinhos mais proximos
         for testInstance in testingSet:
-            knnClassification = knn(classes, trainingSet, minArg, maxArg, testInstance, k)
-            if knnClassification[0] == testInstance.classification:
+            knnClassification, _ = knn(classes, trainingSet, minArg, maxArg, testInstance, k)
+            if knnClassification == testInstance.classification:
                 hit += 1
         
         accuracy += (hit/len(testingSet))
