@@ -1,0 +1,82 @@
+
+Dataset: Datasets/CM1_software_defect_prediction.csv
+
+K = 1
+
+Knn Original
+Accuracy: 84.49%
+Tempo gasto: 0.014163970947265625
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 10; Window = 0.9
+Accuracy: 30.00%
+Tempo gasto: 1.3247361183166504
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 20; Window = 0.9
+Accuracy: 55.00%
+Tempo gasto: 3.0629258155822754
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 30; Window = 0.9
+Accuracy: 55.00%
+Tempo gasto: 4.484032869338989
+
+K = 3
+
+Knn Original
+Accuracy: 87.96%
+Tempo gasto: 0.014993906021118164
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 10; Window = 0.9
+Accuracy: 50.00%
+Tempo gasto: 1.7319340705871582
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 20; Window = 0.9
+Accuracy: 60.00%
+Tempo gasto: 3.147470235824585
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 30; Window = 0.9
+Accuracy: 65.00%
+Tempo gasto: 4.2149529457092285
+
+
+----------------------------------------------------------------------------------------------------------
+
+Dataset: Datasets/KC2_software_defect_prediction.csv
+
+K = 1
+
+Knn Original
+Accuracy: 78.27%
+Tempo gasto: 0.014300107955932617
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 10; Window = 0.9
+Accuracy: 45.00%
+Tempo gasto: 1.4261488914489746
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 20; Window = 0.9
+Accuracy: 67.50%
+Tempo gasto: 2.843785047531128
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 30; Window = 0.9
+Accuracy: 78.33%
+Tempo gasto: 4.03064489364624
+
+K = 3
+
+Knn Original
+Accuracy: 79.23%
+Tempo gasto: 0.009994029998779297
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 10; Window = 0.9
+Accuracy: 50.00%
+Tempo gasto: 1.7198679447174072
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 20; Window = 0.9
+Accuracy: 72.50%
+Tempo gasto: 2.9623448848724365
+
+LVQ3 - LearningRate = 0.95; Prototypes per Class = 30; Window = 0.9
+Accuracy: 80.00%
+Tempo gasto: 4.485460996627808
+
+
+----------------------------------------------------------------------------------------------------------
