@@ -22,17 +22,17 @@ def lvq1(dataset, prototypesPerClass, learningRate, k):
 	tests = []
 
 	actualIndex = 0
-	totalIndex  = len(trainSet) / learningRate  
+	totalIndex  = int((len(trainSet) * (1 - learningRate)) / 2)
 	while actualIndex < totalIndex:
 		i = 0
-		while i < len(prototypes):
-			knnClassification, neighbors = knn(classes, trainSet, minArg, maxArg, prototypes[i], k)
+		while i < len(trainSet):
+			knnClassification, neighbors = knn(classes, prototypes, minArg, maxArg, trainSet[i], k)
 			j = 0
 			while j < len(neighbors):
 				if knnClassification == neighbors[j][1].classification:
-					prototypes[i].adjustParam(neighbors[j][1], True, actualIndex, totalIndex)
+					neighbors[j][1].adjustParam(trainSet[i], True, actualIndex, totalIndex)
 				else: 
-					prototypes[i].adjustParam(neighbors[j][1], False, actualIndex, totalIndex)
+					neighbors[j][1].adjustParam(trainSet[i], False, actualIndex, totalIndex)
 				j += 1
 			i += 1
 		i = 0
@@ -46,7 +46,7 @@ def main():
 	datasets = ["Datasets/CM1_software_defect_prediction.csv", "Datasets/KC2_software_defect_prediction.csv"]
 	kValues = [1,3]											# K para o algoritmo do knn
 	prototypesPerClass = [10, 20, 30]						# Número de protótipos por classe
-	learningRate = 5										# Velocidade da taxa de aprendizagem do algoritmo
+	learningRate = 0.95										# Velocidade da taxa de aprendizagem do algoritmo
 	foldSize = 10											# Tamanho das subdivisoes do crossFold
 
 	startTime = 0
@@ -70,4 +70,3 @@ def main():
 				print(crossFold(classes, prototypes, minArg, maxArg, k, foldSize))
 				print("Tempo gasto: " + str(currentTime) + "\n")
 		print("\n----------------------------------------------------------------------------------------------------------")
-			

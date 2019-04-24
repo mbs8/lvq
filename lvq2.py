@@ -25,22 +25,22 @@ def lvq2(dataset, prototypesPerClass, learningRate, k, w):
 	prototypes, classes, minArg, maxArg, trainSet = lvq1(dataset, prototypesPerClass, learningRate, k)
 
 	actualIndex = 0
-	totalIndex  = len(trainSet) / learningRate  
+	totalIndex  = int((len(trainSet) * (1 - learningRate)) / 2)
 	while actualIndex < totalIndex:
 		i = 0
-		while i < len(prototypes):
-			knnClassification, neighbors = knn(classes, trainSet, minArg, maxArg, prototypes[i], k)
-			knnClassification1, _ = knn(classes, trainSet, minArg, maxArg, prototypes[i+1], k)
+		while i < len(trainSet):
+			knnClassification, neighbors = knn(classes, prototypes, minArg, maxArg, trainSet[i], k)
+			knnClassification1, neighbors1 = knn(classes, prototypes, minArg, maxArg, trainSet[i+1], k)
 			j = 0
 			while j < len(neighbors):
-				if window(neighbors[j][1], prototypes[i], prototypes[i+1], w, minArg, maxArg):
+				if window(neighbors[j][1], trainSet[i], trainSet[i+1], w, minArg, maxArg):
 					if knnClassification != knnClassification1:
-						if knnClassification == neighbors[j][1]:
-							prototypes[i].adjustParam(neighbors[j][1], False, actualIndex, totalIndex)
-							prototypes[i+1].adjustParam(neighbors[j][1], True, actualIndex, totalIndex)
+						if knnClassification == neighbors[j][1].classification:
+							neighbors[j][1].adjustParam(trainSet[i], False, actualIndex, totalIndex)
+							neighbors1[j][1].adjustParam(trainSet[i], True, actualIndex, totalIndex)
 						else:
-							prototypes[i].adjustParam(neighbors[j][1], True, actualIndex, totalIndex)
-							prototypes[i+1].adjustParam(neighbors[j][1], False, actualIndex, totalIndex)
+							neighbors[j][1].adjustParam(trainSet[i], True, actualIndex, totalIndex)
+							neighbors1[j][1].adjustParam(trainSet[i], False, actualIndex, totalIndex)
 				j += 1
 			i += 2
 		i = 0
@@ -54,9 +54,9 @@ def main():
 	datasets = ["Datasets/CM1_software_defect_prediction.csv", "Datasets/KC2_software_defect_prediction.csv"]
 	kValues = [1,3]											# K para o algoritmo do knn
 	prototypesPerClass = [10, 20, 30]						# Número de protótipos por classe
-	learningRate = 5										# Velocidade da taxa de aprendizagem do algoritmo
+	learningRate = 0.95										# Velocidade da taxa de aprendizagem do algoritmo
 	foldSize = 10											# Tamanho das subdivisoes do crossFold
-	w = 0.5													# Largura da janela para o LVQ2
+	w = 0.99												# Largura da janela para o LVQ2
 
 	startTime = 0
 	currentTime = 0
@@ -80,6 +80,3 @@ def main():
 				print("Tempo gasto: " + str(currentTime) + "\n")
 		print("\n----------------------------------------------------------------------------------------------------------")
 			
-	
-
-main()

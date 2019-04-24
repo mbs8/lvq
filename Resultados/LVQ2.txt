@@ -5,37 +5,37 @@ K = 1
 
 Knn Original
 Accuracy: 84.49%
-Tempo gasto: 0.012612104415893555
+Tempo gasto: 0.009159088134765625
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 10; Window = 0.5
-Accuracy: 45.00%
-Tempo gasto: 17.158077001571655
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 10; Window = 0.99
+Accuracy: 25.00%
+Tempo gasto: 2.9101810455322266
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 20; Window = 0.5
-Accuracy: 57.50%
-Tempo gasto: 34.213284730911255
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 20; Window = 0.99
+Accuracy: 50.00%
+Tempo gasto: 4.6557629108428955
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 30; Window = 0.5
-Accuracy: 61.67%
-Tempo gasto: 50.95566391944885
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 30; Window = 0.99
+Accuracy: 55.00%
+Tempo gasto: 8.511367082595825
 
 K = 3
 
 Knn Original
 Accuracy: 87.96%
-Tempo gasto: 0.00894021987915039
+Tempo gasto: 0.009666204452514648
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 10; Window = 0.5
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 10; Window = 0.99
 Accuracy: 45.00%
-Tempo gasto: 18.428543090820312
+Tempo gasto: 3.391739845275879
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 20; Window = 0.5
-Accuracy: 40.00%
-Tempo gasto: 34.57218408584595
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 20; Window = 0.99
+Accuracy: 52.50%
+Tempo gasto: 6.236164808273315
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 30; Window = 0.5
-Accuracy: 40.00%
-Tempo gasto: 54.810046911239624
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 30; Window = 0.99
+Accuracy: 65.00%
+Tempo gasto: 7.279246807098389
 
 
 ----------------------------------------------------------------------------------------------------------
@@ -46,37 +46,37 @@ K = 1
 
 Knn Original
 Accuracy: 78.27%
-Tempo gasto: 0.012586116790771484
+Tempo gasto: 0.013446807861328125
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 10; Window = 0.5
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 10; Window = 0.99
 Accuracy: 45.00%
-Tempo gasto: 19.293524980545044
+Tempo gasto: 2.7753448486328125
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 20; Window = 0.5
-Accuracy: 57.50%
-Tempo gasto: 39.63503909111023
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 20; Window = 0.99
+Accuracy: 60.00%
+Tempo gasto: 4.9996209144592285
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 30; Window = 0.5
-Accuracy: 61.67%
-Tempo gasto: 60.93440914154053
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 30; Window = 0.99
+Accuracy: 71.67%
+Tempo gasto: 7.386936664581299
 
 K = 3
 
 Knn Original
 Accuracy: 79.23%
-Tempo gasto: 0.012279987335205078
+Tempo gasto: 0.009883880615234375
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 10; Window = 0.5
-Accuracy: 45.00%
-Tempo gasto: 21.749372243881226
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 10; Window = 0.99
+Accuracy: 50.00%
+Tempo gasto: 3.0060112476348877
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 20; Window = 0.5
-Accuracy: 67.50%
-Tempo gasto: 41.09875988960266
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 20; Window = 0.99
+Accuracy: 70.00%
+Tempo gasto: 5.773599863052368
 
-LVQ2 - LearningRate = 5; Prototypes per Class = 30; Window = 0.5
-Accuracy: 71.67%
-Tempo gasto: 63.50768995285034
+LVQ2 - LearningRate = 0.95; Prototypes per Class = 30; Window = 0.99
+Accuracy: 80.00%
+Tempo gasto: 8.25717806816101
 
 
 ----------------------------------------------------------------------------------------------------------
